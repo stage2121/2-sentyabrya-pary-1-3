@@ -1,0 +1,81 @@
+class Figure:
+    
+    def __init__(self, coords, width, color):
+        self.coords = coords  
+        self.width = width  
+        self.color = color  
+    
+    def display_info(self):
+        print(f"Координаты: {self.coords}, Ширина: {self.width}, Цвет: {self.color}")
+
+class Line(Figure):    
+    def __init__(self, coords, width, color, length):
+        super().__init__(coords, width, color)
+        self.length = length
+    
+    def display_info(self):
+        print("=" * 40)
+        print("ЛИНИЯ:")
+        super().display_info()
+        print(f"Длина: {self.length} единиц")
+        print("Тип: Линия")
+
+
+class Rect(Figure):    
+    def __init__(self, coords, width, color, height, width_rect):
+        super().__init__(coords, width, color)
+        self.height = height       
+        self.width_rect = width_rect 
+    
+    def display_info(self):
+        print("=" * 40)
+        print("ПРЯМОУГОЛЬНИК:")
+        super().display_info()
+        print(f"Высота: {self.height} единиц")
+        print(f"Ширина: {self.width_rect} единиц")
+        print("Тип: Прямоугольник")
+
+
+class Ellipse(Figure):    
+    def __init__(self, coords, width, color, radius_x, radius_y):
+        super().__init__(coords, width, color)
+        self.radius_x = radius_x  
+        self.radius_y = radius_y 
+    
+    def display_info(self):
+        print("=" * 40)
+        print("ЭЛЛИПС:")
+        super().display_info()
+        print(f"Радиус X: {self.radius_x} единиц")
+        print(f"Радиус Y: {self.radius_y} единиц")
+        print("Тип: Эллипс")
+
+print("СОЗДАНИЕ ФИГУР И ИХ СВОЙСТВ")
+print("=" * 40)
+
+line = Line(
+    coords=(0, 0),  
+    width=2,         
+    color="Красный", 
+    length=10         
+)
+
+rect = Rect(
+    coords=(5, 5),   
+    width=1,       
+    color="Синий",  
+    height=4,        
+    width_rect=6   
+)
+
+ellipse = Ellipse(
+    coords=(10, 10), 
+    width=3,        
+    color="Зеленый", 
+    radius_x=5,      
+    radius_y=3    
+)
+
+line.display_info()
+rect.display_info()
+ellipse.display_info()

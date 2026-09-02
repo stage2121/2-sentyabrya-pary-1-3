@@ -1,0 +1,123 @@
+class Figure:
+    
+    def __init__(self, coords, width, color):
+        self.coords = coords  
+        self.width = width  
+        self.color = color  
+    
+    def display_info(self):
+        print(f"Координаты: {self.coords}, Ширина: {self.width}, Цвет: {self.color}")
+
+    def draw(self):
+        print("Рисуется фигура:")
+
+class Line(Figure):    
+    def __init__(self, coords, width, color, length):
+        super().__init__(coords, width, color)
+        self.length = length
+    
+    def display_info(self):
+        print("=" * 40)
+        print("ЛИНИЯ:")
+        super().display_info()
+        print(f"Длина: {self.length} единиц")
+        print("Тип: Линия")
+
+    def draw(self):
+        print(f"Рисуется линия длиной {self.length} единиц, цвет {self.color}")
+
+class Triangle(Figure):    
+    def __init__(self, coords, width, color, side1, side2, side3):
+        super().__init__(coords, width, color)
+        self.side1 = side1
+        self.side2 = side2
+        self.side3 = side3
+    
+    def display_info(self):
+        print("=" * 40)
+        print("ТРЕУГОЛЬНИК:")
+        super().display_info()
+        print(f"Стороны: {self.side1}, {self.side2}, {self.side3}")
+        print("Тип: Треугольник")
+
+    def draw(self):
+        print(f"Рисуется треугольник со сторонами {self.side1}, {self.side2}, {self.side3}, цвет {self.color}")
+
+class Rect(Figure):    
+    def __init__(self, coords, width, color, height, width_rect):
+        super().__init__(coords, width, color)
+        self.height = height       
+        self.width_rect = width_rect 
+    
+    def display_info(self):
+        print("=" * 40)
+        print("ПРЯМОУГОЛЬНИК:")
+        super().display_info()
+        print(f"Высота: {self.height} единиц")
+        print(f"Ширина: {self.width_rect} единиц")
+        print("Тип: Прямоугольник")
+
+    def draw(self):
+        print(f"Рисуется прямоугольник {self.width_rect}x{self.height}, цвет {self.color}")
+
+class Ellipse(Figure):    
+    def __init__(self, coords, width, color, radius_x, radius_y):
+        super().__init__(coords, width, color)
+        self.radius_x = radius_x  
+        self.radius_y = radius_y 
+    
+    def display_info(self):
+        print("=" * 40)
+        print("ЭЛЛИПС:")
+        super().display_info()
+        print(f"Радиус X: {self.radius_x} единиц")
+        print(f"Радиус Y: {self.radius_y} единиц")
+        print("Тип: Эллипс")
+
+    def draw(self):
+        print(f"Рисуется эллипс с радиусами {self.radius_x} и {self.radius_y}, цвет {self.color}")
+
+line = Line(
+    coords=(0, 0),  
+    width=2,         
+    color="Красный", 
+    length=10         
+)
+
+rect = Rect(
+    coords=(5, 5),   
+    width=1,       
+    color="Синий",  
+    height=4,        
+    width_rect=6   
+)
+
+ellipse = Ellipse(
+    coords=(10, 10), 
+    width=3,        
+    color="Зеленый", 
+    radius_x=5,      
+    radius_y=3    
+)
+
+tria = Triangle(
+    coords=(2, 4),  
+    width=7,         
+    color="Черный",     
+    side1=3,  
+    side2=5,         
+    side3=6 
+)
+
+figures = [line, rect, ellipse, tria]
+
+print("=" * 40)
+print("ИНФОРМАЦИЯ О ФИГУРАХ")
+for fig in figures:
+    fig.display_info()
+
+print("=" * 40)
+print("РИСОВАНИЕ ФИГУР")
+print("=" * 40)
+for fig in figures:
+    fig.draw()

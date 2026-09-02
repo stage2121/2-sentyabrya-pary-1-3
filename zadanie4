@@ -1,0 +1,53 @@
+class Graph:
+    def __init__(self, x=0, y=0, scale=1.0):
+        self._x = x          
+        self._y = y          
+        self._scale = scale  
+    
+    def move(self, dx, dy):
+        self._x += dx
+        self._y += dy
+        print(f"График перемещен на ({dx}, {dy})")
+    
+    def change_scale(self, factor):
+        self._scale *= factor
+        print(f"Масштаб изменен в {factor} раз")
+    
+    def get_state(self):
+        return {
+            'x': self._x,
+            'y': self._y,
+            'scale': self._scale
+        }
+    
+    def display(self):
+        print(f"График: x={self._x}, y={self._y}, масштаб={self._scale}")
+
+gr1 = Graph(10, 5, 1.5)
+gr2 = Graph(-3, 7, 2.0)
+gr3 = Graph(0, 0, 1.0)
+
+print("Исходное состояние графиков:")
+print("График 1:", end=" ")
+gr1.display()
+print("График 2:", end=" ")
+gr2.display()
+print("График 3:", end=" ")
+gr3.display()
+
+print("\n" + "="*50)
+
+print("\nДействия с графиком 1:")
+gr1.move(4, -2)
+
+print("\nДействия с графиком 2:")
+gr2.change_scale(1.5)
+
+print("\n" + "="*50)
+print("\nИтоговое состояние графиков:")
+print("График 1:", end=" ")
+gr1.display()
+print("График 2:", end=" ")
+gr2.display()
+print("График 3:", end=" ")
+gr3.display()

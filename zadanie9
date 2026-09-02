@@ -1,0 +1,122 @@
+class Figure:    
+    def __init__(self, x, y, color):
+        self.x = x          
+        self.y = y        
+        self.color = color 
+    
+    def get_coords(self):
+        return (self.x, self.y)
+    
+    def set_coords(self, x, y):
+        if isinstance(x, (int, float)) and isinstance(y, (int, float)):
+            self.x = x
+            self.y = y
+            print(f"Координаты изменены на ({x}, {y})")
+        else:
+            raise ValueError("Координаты должны быть числами")
+    
+    def display_info(self):
+        print(f"Координаты: ({self.x}, {self.y}), Цвет: {self.color}")
+    
+    def draw(self):
+        print("Рисуется фигура")
+
+
+class Circle(Figure):
+    def __init__(self, x, y, color, radius):
+        super().__init__(x, y, color)
+        self.radius = radius
+    
+    def calculate_area(self):
+        return 3.14159 * self.radius ** 2
+    
+    def draw(self):
+        print(f"Рисуется круг радиусом {self.radius}, цвет {self.color}")
+    
+    def display_info(self):
+        print("=" * 40)
+        print("КРУГ:")
+        super().display_info()
+        print(f"Радиус: {self.radius}")
+        print(f"Площадь: {self.calculate_area():.2f}")
+
+
+class Square(Figure):    
+    def __init__(self, x, y, color, side):
+        super().__init__(x, y, color)
+        self.side = side
+    
+    def calculate_area(self):
+        return self.side ** 2
+    
+    def draw(self):
+        print(f"Рисуется квадрат со стороной {self.side}, цвет {self.color}")
+    
+    def display_info(self):
+        print("=" * 40)
+        print("КВАДРАТ:")
+        super().display_info()
+        print(f"Сторона: {self.side}")
+        print(f"Площадь: {self.calculate_area()}")
+
+
+
+def main():
+    print("=" * 60)
+    print("МИНИ-СИСТЕМА ГЕОМЕТРИЧЕСКИХ ФИГУР")
+    print("=" * 60)
+    print("\n1. ДЕМОНСТРАЦИЯ ИНКАПСУЛЯЦИИ")
+    print("=" * 40)
+    
+    figure = Figure(0, 0, "Красный")
+    
+    try:
+        print(f"Попытка прямого доступа к x: {figure.x}")
+    except AttributeError as e:
+        print(f"Нельзя сюда: {e}")
+    
+    coords = figure.get_coords()
+    print(f"Доступ через get_coords(): {coords}")
+    
+    figure.set_coords(10, 20)
+    print(f"Новые координаты через get_coords(): {figure.get_coords()}")
+    
+    print("\n" + "=" * 60)
+    
+    print("\n2. СОЗДАНИЕ ФИГУР")
+    print("=" * 40)
+    
+    figures = [
+        Circle(0, 0, "Красный", 5),      
+        Square(10, 10, "Синий", 4), 
+        Circle(-5, 3, "Зеленый", 3),   
+        Square(2, -2, "Желтый", 6),    
+        Circle(8, -4, "Фиолетовый", 7)  
+    ]
+    
+    for i, fig in enumerate(figures, 1):
+        print(f"\nФигура {i}: {fig.__class__.__name__}")
+        fig.display_info()
+    
+    print("\n" + "=" * 60)
+    
+    print("\n3. ДЕМОНСТРАЦИЯ ПОЛИМОРФИЗМА")
+    print("=" * 40)
+    
+    print("Рисование всех фигур (один цикл):")
+    for fig in figures:
+        fig.draw()
+    
+    print("\n" + "=" * 60)
+    
+    print("\n5. ДОПОЛНИТЕЛЬНЫЕ ВОЗМОЖНОСТИ")
+    print("=" * 40)
+    
+    print("Изменяем координаты фигуры 1 (круг):")
+    figures[0].set_coords(15, 25)
+    
+    print("\nОбновленная информация о фигуре 1:")
+    figures[0].display_info()
+
+if __name__ == "__main__":
+    main()
