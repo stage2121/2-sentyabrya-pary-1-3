@@ -1,0 +1,15 @@
+TYPE_OS = 1
+class DialogWindows:
+    name_class = "DialogWindows"
+    
+class DialogLinux:
+    name_class = "DialogLinux"
+
+class Dialog:
+    def __new__(cls, *args, **kwargs):
+        obj = DialogWindows() if TYPE_OS == 1 else DialogLinux()
+        obj.name = args[0]
+        return obj
+    
+dlg = Dialog("Выбранное окно")
+print(f" {dlg.name}: {dlg.name_class} ")

@@ -1,0 +1,16 @@
+class SingletonFive:
+    __count = 0
+    __last_obj = None
+    def __new__(cls, name):
+        if cls.__count < 5:
+            cls.__count += 1
+            obj = super().__new__(cls)
+            obj.name = name
+            cls.__last_obj = obj
+            return obj
+        return cls.__last_obj
+    
+objs = [SingletonFive(str(n)) for n in range(10)]
+
+for o in objs:
+    print(id(0), o.name)
